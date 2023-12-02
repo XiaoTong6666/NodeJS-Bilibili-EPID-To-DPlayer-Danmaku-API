@@ -6,7 +6,7 @@ const { exec } = require('child_process');
 http.createServer((req, res) => {
   if (req.method === 'GET' && req.url.startsWith('/v3/?id=')) {
     const epid = url.parse(req.url, true).query.id;
-
+    const epid1 = epid*1 //变一下变量类型，不然下面的find()用不了（*1之后实测能用，众所周知a*1=a，所以就想到这个）
     // 想办法用epid把对应的cid搞到手
     async function cidd() {
       const hyuan = await fetch(`https://www.bilibili.com/bangumi/play/ep${epid}`, {
@@ -18,7 +18,7 @@ http.createServer((req, res) => {
       const $$ = cheerio.load(htm);
       const yuan = $$('script#__NEXT_DATA__').html();
       const jsonData = JSON.parse(yuan);
-      const jcid = jsonData.props.pageProps.dehydratedState.queries[0].state.data.epMap[epid].cid;
+      const jcid = jsonData.props.pageProps.dehydratedState.queries[0].state.data.seasonInfo.mediaInfo.episodes.find(item => item.id === epid1).cid;
       const cid = JSON.stringify(jcid);
       return cid;
     }
