@@ -1,22 +1,16 @@
 # 仓库简介
 缩写：nbetdda（百度翻译能读出来    
 顾名思义，这个项目就是通过b站的ep号获取并且转换成DPlayer能解析的弹幕数据。下面是文件介绍和食用教程
-
-# 文件介绍
-***epdm-api.js：***
-```
-这个是主要的nodejs后端程序，文件名的意思是dplayer的弹幕id为b站的ep号所获取的弹幕数据的一个api程序。
-主要负责将通过ep号获取对应点cid，再通过cid获取b站原始xml弹幕数据。
-还有就是默认端口是103
-```
-***epdm-dplayer.html：***
-```
-这个是主要的html+js的端程序，文件名的意思是b站的ep号为dplayer弹幕id并加载到dplayer播放器。
-主要负责将原始json数据处理成五彩斑斓的弹幕并呈现出来。
-```
+# 环境依赖
+curl 7.63.0 (可≥该版本，＜该版本的未测试    
+Node.js v18.16.1 （≥能用，＜懒得试    
+npm v9.5.1（≥可，＜懒    
+├── cheerio@1.0.0-rc.12 （版本尽量相同    
+├── child_process@1.0.2 （尽量同    
+├── http@0.0.1-security （尽同    
+└── url@0.11.3 （~同！    
 # 食用教程
 ***epdm-api.js：***
-确保设备安装了nodejs和npm，并确保npm可以正常连接你所配置的软件源
 ```
 sudo npm install child_process
 sudo npm install cheerio
@@ -35,5 +29,17 @@ sudo node epdm-api.js
 </Location>
 ```
 之后就可以直接使用Apache和浏览器解析`epdm-dplayer.html`了。该页面会显示两个输入框和一个确定，第一个框输入的为b站番剧的ep号，第二个输入为从OmoFun抓包抓到的视频链接，点击确定就可以白嫖b站的弹幕啦（喜
-
+# 文件描述
+***epdm-api.js：***
+```
+这个是主要的nodejs后端程序，文件名的意思是dplayer的弹幕id为b站的ep号所获取的弹幕数据的一个api程序。
+主要负责将通过ep号获取对应点cid，再通过cid获取b站原始xml弹幕数据。
+还有就是默认端口是103
+```
+***epdm-dplayer.html：***
+```
+这个是主要的html+js的端程序，文件名的意思是b站的ep号为dplayer弹幕id并加载到dplayer播放器。
+主要负责将原始json数据处理成五彩斑斓的弹幕并呈现出来。
+```
+[`c236aba`](#https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/c236abaaafc671e79d74d7557b85834ce46ae0d1)更新内容，适配b站请求ep号获取的json数据，用于获取cid
 # END
