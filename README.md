@@ -41,6 +41,6 @@ sudo node epdm-api.js
 这个是主要的html+js的端程序，文件名的意思是b站的ep号为dplayer弹幕id并加载到dplayer播放器。
 主要负责将原始json数据处理成五彩斑斓的弹幕并呈现出来。
 ```
-[`c236aba`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/c236abaaafc671e79d74d7557b85834ce46ae0d1)更新内容，适配b站请求ep号获取的json数据，用于获取cid
+[`c236aba`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/c236abaaafc671e79d74d7557b85834ce46ae0d1)更新内容，适配b站请求ep号获取的json数据，用于获取cid    
 [`72b8f41`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/72b8f41d55fa5325ce61aef9763a8af9874d1d25)跟随b站后端修改，维护性更新
 # END
