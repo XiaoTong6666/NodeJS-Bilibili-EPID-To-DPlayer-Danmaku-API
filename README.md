@@ -24,8 +24,8 @@ sudo node epdm-api.js
 ```
 </Location>
 <Location "/v3">
-  ProxyPass "http://127.0.0.1:103/v3"
-  ProxyPassReverse "http://127.0.0.1:103/v3"
+  ProxyPass "http://127.0.0.1:8080/v3"
+  ProxyPassReverse "http://127.0.0.1:8080/v3"
 </Location>
 ```
 之后就可以直接使用Apache和浏览器解析`epdm-dplayer.html`了。该页面会显示两个输入框和一个确定，第一个框输入的为b站番剧的ep号，第二个输入为从OmoFun抓包抓到的视频链接，点击确定就可以白嫖b站的弹幕啦（喜
@@ -34,7 +34,7 @@ sudo node epdm-api.js
 ```
 这个是主要的nodejs后端程序，文件名的意思是dplayer的弹幕id为b站的ep号所获取的弹幕数据的一个api程序。
 主要负责将通过ep号获取对应点cid，再通过cid获取b站原始xml弹幕数据。
-还有就是默认端口是103
+还有就是默认端口是8080
 ```
 ***epdm-dplayer.html：***
 ```
@@ -42,4 +42,5 @@ sudo node epdm-api.js
 主要负责将原始json数据处理成五彩斑斓的弹幕并呈现出来。
 ```
 [`c236aba`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/c236abaaafc671e79d74d7557b85834ce46ae0d1)更新内容，适配b站请求ep号获取的json数据，用于获取cid
+[`72b8f41`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/72b8f41d55fa5325ce61aef9763a8af9874d1d25)跟随b站后端修改，维护性更新
 # END
