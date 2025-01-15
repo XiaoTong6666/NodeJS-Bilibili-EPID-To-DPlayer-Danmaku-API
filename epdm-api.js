@@ -2,6 +2,7 @@ const cheerio = require('cheerio');
 const http = require('http');
 const url = require('url');
 const { exec } = require('child_process');
+const port = 8080;
 //懂得都懂，http路由
 http.createServer((req, res) => {
   if (req.method === 'GET' && req.url.startsWith('/v3/?id=')) {
@@ -18,7 +19,7 @@ http.createServer((req, res) => {
       const $$ = cheerio.load(htm);
       const yuan = $$('script#__NEXT_DATA__').html();
       const jsonData = JSON.parse(yuan);
-      const jcid = jsonData.props.pageProps.dehydratedState.queries[0].state.data.seasonInfo.mediaInfo.episodes.find(item => item.id === epid1).cid;
+      const jcid = jsonData.props.pageProps.dehydratedState.queries[0].state.data.result.play_view_business_info.episode_info.cid;
       const cid = JSON.stringify(jcid);
       return cid;
     }
@@ -73,4 +74,7 @@ http.createServer((req, res) => {
 		  return;
       });
   }
-}).listen(103);
+}).listen(port, () => {
+	console.log('监听端口：'+port);
+	console.log(`使用例子：curl "http://[::1]:${port}/v3/?id=341209"`)
+	});
