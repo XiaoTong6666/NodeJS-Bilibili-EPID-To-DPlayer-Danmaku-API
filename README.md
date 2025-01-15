@@ -18,7 +18,7 @@ sudo npm install url
 sudo npm install http
 sudo node epdm-api.js
 ```
-curl请求例：curl "http://[::1]:8083/v3/?id=341209"    
+curl请求例：curl "http://[::1]:8080/v3/?id=341209"    
 
 ***epdm-dplayer.html:***
 推荐配合Apache或者Nginx反代使用，以下为Apache的反代后的教程    
