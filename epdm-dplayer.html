@@ -1,29 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
-<meta charset="utf-8"> 
+    <meta charset="utf-8">
     <title>biliepid-DPlayer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/dplayer/dist/DPlayer.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2vh;
+        }
+
+        .input-container {
+            background-color: #1e1e1e;
+            padding: 5vw;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+            margin-bottom: 4vh;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background-color: #2a2a2a;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .input-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00a1d6;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.15s ease, background 0.3s;
+        }
+
+        .input-container button:active {
+            transform: scale(0.95); /* 回弹缩放效果 */
+        }
+
+        .input-container button:hover {
+            background-color: #008cbf;
+        }
+
+        #dplayer-container {
+            width: 100%;
+            max-width: 960px;
+            height: 56.25vw; /* 16:9 比例自适应 */
+            max-height: 540px;
+        }
+
+        @media (max-width: 600px) {
+            #dplayer-container {
+                height: 60vw;
+            }
+        }
+    </style>
 </head>
-<body bgcolor="#000000">
-   <div>
-        <label for="inputEpid"></label>
-        <input type="text" id="inputEpid" placeholder="ep号(数字部分)">
-        <br>
-        <label for="inputVideoUrl"></label>
-        <input type="text" id="inputVideoUrl" placeholder="视频链接(m3u8和mp4都可以)">
-        <br>
+<body>
+    <div class="input-container">
+        <input type="text" id="inputEpid" placeholder="请输入 ep 号（数字部分）" value="341209">
+        <input type="text" id="inputVideoUrl" placeholder="请输入视频链接（支持 mp4/m3u8）" value="https://6.imxt.asia:8443/mnzl.mp4">
         <button onclick="createDPlayer()">确定</button>
     </div>
     <div id="dplayer-container"></div>
-<script src="https://cdn.jsdelivr.net/npm/dplayer@1.26.0/dist/DPlayer.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
     <script>
+        let dp;
         function createDPlayer() {
-            var epid = document.getElementById('inputEpid').value;
-            var videoUrl = document.getElementById('inputVideoUrl').value;
-            var proxyapi = ``;
-            const options = {
+            const epid = document.getElementById('inputEpid').value.trim();
+            const videoUrl = document.getElementById('inputVideoUrl').value.trim();
+            const proxyapi = ''; // 可设置为你的弹幕 API 地址
+
+            if (dp) {
+                dp.destroy();
+            }
+
+            dp = new DPlayer({
                 container: document.getElementById('dplayer-container'),
+                autoplay: false,
+                theme: '#FADFA3',
+                loop: true,
+                lang: 'zh-cn',
+                screenshot: true,
+                hotkey: true,
+                preload: 'auto',
+                volume: 0.7,
+                mutex: true,
                 video: {
                     url: videoUrl,
                     type: 'auto',
@@ -34,9 +119,9 @@
                     user: 'DPlayer',
                     bottom: '15%',
                     unlimited: true,
-                },
-            };
-            var dp = new DPlayer(options);
+                }
+            });
         }
     </script>
 </body>
+</html>
