@@ -1,0 +1,31 @@
+{
+  "name": "nodejs-bilibili-epid-to-dplayer-danmaku-api",
+  "version": "1.0.0",
+  "description": "一个将B站番剧的ep号转换为DPlayer弹幕的Node.js的API后端",
+  "main": "epdm-api.js",
+  "scripts": {
+    "start": "node epdm-api.js",
+    "test": "node epdm-api.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API.git"
+  },
+  "keywords": [
+    "nbetdda",
+    "bilibili",
+    "epid",
+    "danmaku",
+    "DPlayer",
+    "API"
+  ],
+  "author": "小潼",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/issues"
+  },
+  "homepage": "https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
