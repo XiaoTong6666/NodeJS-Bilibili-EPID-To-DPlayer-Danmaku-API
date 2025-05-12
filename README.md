@@ -54,5 +54,6 @@ location /v3/ {
 [`7e65ce6`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/7e65ce6f993a4a784505b9b3ff800722068bcde5)跟随b站后端修改，维护性更新喵~    
 [`711d345`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/711d345bc286a6cb1710d8f7fc8c3c05caf7676e)新增CORS响应头，支持跨站请求喵~    
 # 致谢参考
-部分功能参考自[DPlayer-node](https://github.com/MoePlayer/DPlayer-node)项目的[bilibili.js](https://github.com/MoePlayer/DPlayer-node/blob/master/routes/bilibili.js)，原项目使用MIT协议发布，特此致谢并遵守原始协议。
+部分功能参考自[DPlayer-node](https://github.com/MoePlayer/DPlayer-node)项目的[bilibili.js](https://github.com/MoePlayer/DPlayer-node/blob/master/routes/bilibili.js)，原项目使用MIT协议发布，特此致谢并遵守原始协议。    
+同时感谢GPT的大力支持
 # END
