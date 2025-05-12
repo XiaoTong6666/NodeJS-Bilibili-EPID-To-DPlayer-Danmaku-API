@@ -30,12 +30,12 @@ curl请求例：curl "http://[::1]:8080/v3/?id=341209"
 Nginx（需要在http块下的server块添加，http块通常在nginx.conf找到，若没找到server块，留意include的路径下的配置文件，说不定server块就在那）
 ```
 location /v3/ {
-                proxy_pass http://127.0.0.1:8080/v3/;
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_set_header X-Forwarded-Proto $scheme;
-        }
+  proxy_pass http://127.0.0.1:8080/v3/;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header X-Forwarded-Proto $scheme;
+  }
 ```
 之后就可以直接使用Apache/Nginx和浏览器解析`epdm-dplayer.html`了。该页面会显示两个输入框和一个确定，第一个框输入的为b站番剧的ep号，第二个输入为从OmoFun抓包抓到的视频链接，点击确定就可以白嫖b站的弹幕啦（喜
 # 文件描述
