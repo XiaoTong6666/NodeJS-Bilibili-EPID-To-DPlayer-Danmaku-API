@@ -45,4 +45,6 @@ curl请求例：curl "http://[::1]:8080/v3/?id=341209"
 ```
 [`c236aba`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/c236abaaafc671e79d74d7557b85834ce46ae0d1)更新内容，适配b站请求ep号获取的json数据，用于获取cid    
 [`72b8f41`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/72b8f41d55fa5325ce61aef9763a8af9874d1d25)跟随b站后端修改，维护性更新
+#致谢参考
+部分功能参考自[DPlayer-node](https://github.com/MoePlayer/DPlayer-node) 项目的[bilibili.js](https://github.com/MoePlayer/DPlayer-node/blob/master/routes/bilibili.js)，原项目使用MIT协议发布，特此致谢并遵守原始协议。
 # END
