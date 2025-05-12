@@ -37,7 +37,7 @@ location /v3/ {
   proxy_set_header X-Forwarded-Proto $scheme;
   }
 ```
-之后就可以直接使用Apache/Nginx和浏览器解析`epdm-dplayer.html`了。该页面会显示两个输入框和一个确定，第一个框输入的为b站番剧的ep号，第二个输入为从 ~~OmoFun(我辛苦过的入站考试啊)~~ Lanerc抓包抓到的视频链接，点击确定就可以白嫖b站的弹幕啦（喜
+之后就可以直接使用Apache/Nginx和浏览器解析`epdm-dplayer.html`了。该页面会显示两个输入框和一个确定，第一个框输入的为b站番剧的ep号，第二个输入为从 ~~OmoFun(我辛苦过的入站考试啊喵qwq)~~ Lanerc抓包抓到的视频链接，点击确定就可以白嫖b站的弹幕啦（喜
 # 文件描述
 ***epdm-api.js：***
 ```
