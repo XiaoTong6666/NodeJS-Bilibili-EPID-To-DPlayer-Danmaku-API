@@ -12,10 +12,7 @@ npm v9.5.1（≥可，＜懒
 # 食用教程
 ***epdm-api.js：***
 ```
-sudo npm install child_process
-sudo npm install cheerio
-sudo npm install url
-sudo npm install http
+sudo npm install
 sudo node epdm-api.js
 ```
 curl请求例：curl "http://[::1]:8080/v3/?id=341209"    
