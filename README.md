@@ -27,7 +27,17 @@ curl请求例：curl "http://[::1]:8080/v3/?id=341209"
   ProxyPassReverse "http://127.0.0.1:8080/v3"
 </Location>
 ```
-之后就可以直接使用Apache和浏览器解析`epdm-dplayer.html`了。该页面会显示两个输入框和一个确定，第一个框输入的为b站番剧的ep号，第二个输入为从OmoFun抓包抓到的视频链接，点击确定就可以白嫖b站的弹幕啦（喜
+Nginx（需要在http块下的server块添加，http块通常在nginx.conf找到，若没找到server块，留意include的路径下的配置文件，说不定server块就在那）
+```
+location /v3/ {
+                proxy_pass http://127.0.0.1:8080/v3/;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+        }
+```
+之后就可以直接使用Apache/Nginx和浏览器解析`epdm-dplayer.html`了。该页面会显示两个输入框和一个确定，第一个框输入的为b站番剧的ep号，第二个输入为从OmoFun抓包抓到的视频链接，点击确定就可以白嫖b站的弹幕啦（喜
 # 文件描述
 ***epdm-api.js：***
 ```
@@ -40,9 +50,9 @@ curl请求例：curl "http://[::1]:8080/v3/?id=341209"
 这个是主要的html+js的端程序，文件名的意思是b站的ep号为dplayer弹幕id并加载到dplayer播放器。
 主要负责将原始json数据处理成五彩斑斓的弹幕并呈现出来。
 ```
-[`c236aba`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/c236abaaafc671e79d74d7557b85834ce46ae0d1)更新内容，适配b站请求ep号获取的json数据，用于获取cid    
-[`7e65ce6`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/7e65ce6f993a4a784505b9b3ff800722068bcde5)跟随b站后端修改，维护性更新    
-[`711d345`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/711d345bc286a6cb1710d8f7fc8c3c05caf7676e)新增CORS响应头，支持跨站请求
+[`c236aba`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/c236abaaafc671e79d74d7557b85834ce46ae0d1)更新内容，适配b站请求ep号获取的json数据，用于获取cid喵~    
+[`7e65ce6`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/7e65ce6f993a4a784505b9b3ff800722068bcde5)跟随b站后端修改，维护性更新喵~    
+[`711d345`](https://github.com/XiaoTong6666/NodeJS-Bilibili-EPID-To-DPlayer-Danmaku-API/commit/711d345bc286a6cb1710d8f7fc8c3c05caf7676e)新增CORS响应头，支持跨站请求喵~    
 # 致谢参考
 部分功能参考自[DPlayer-node](https://github.com/MoePlayer/DPlayer-node)项目的[bilibili.js](https://github.com/MoePlayer/DPlayer-node/blob/master/routes/bilibili.js)，原项目使用MIT协议发布，特此致谢并遵守原始协议。
 # END
