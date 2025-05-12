@@ -61,7 +61,10 @@ http.createServer((req, res) => {
                 data: data,
               });
               const outt = out !== null ? out : '{}';
-              res.writeHead(200, { 'Content-Type': 'application/json' });
+              res.writeHead(200, { 
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+              });
               res.write(outt);
               res.end();
             })
