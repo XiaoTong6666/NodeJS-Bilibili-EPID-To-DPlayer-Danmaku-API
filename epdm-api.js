@@ -2,7 +2,7 @@ const cheerio = require('cheerio');
 const http = require('http');
 const url = require('url');
 const { exec } = require('child_process');
-const port = 8080;
+const port = 80;
 //懂得都懂，http路由
 http.createServer((req, res) => {
   if (req.method === 'GET' && req.url.startsWith('/v3/?id=')) {
