@@ -23,7 +23,7 @@ http.createServer((req, res) => {
 //回调获取的cid再次请求获取原屎xml，这个地方用fetch-API和https模块都解不开，替代方案就是curl了，curl YYDS
     huoqucid()
       .then((cid) => {
-        const danmuurl = `https://api.bilibili.com/x/v1/dm/list.so?oid=${cid}`;
+        const danmuurl = `https://comment.bilibili.com/${cid}.xml`;
         exec(`curl "${danmuurl}" --compressed`, (error, stdout, stderr) => {
           if (error) {
             return;
