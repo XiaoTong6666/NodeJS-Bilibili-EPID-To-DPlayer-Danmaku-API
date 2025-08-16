@@ -6,28 +6,25 @@ const port = 8080;
 //懂得都懂，http路由
 http.createServer((req, res) => {
   if (req.method === 'GET' && req.url.startsWith('/v3/?id=')) {
-    const epid = url.parse(req.url, true).query.id;
-    const epid1 = epid*1 //变一下变量类型，不然下面的find()用不了（*1之后实测能用，众所周知a*1=a，所以就想到这个）
+    const epidstr = url.parse(req.url, true).query.id;
+    const epidnum = Number(epidstr); //变一下变量类型，不然下面的find()用不了
     // 想办法用epid把对应的cid搞到手
-    async function cidd() {
-      const hyuan = await fetch(`https://www.bilibili.com/bangumi/play/ep${epid}`, {
-        headers: {
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
+    async function huoqucid() {
+      const yuanshi = await fetch(`https://api.bilibili.com/pgc/view/web/ep/list?ep_id=${epidstr}`, {
+        "headers": {
+          "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:143.0) Gecko/20100101 Firefox/143.0",
         },
       });
-      const htm = await hyuan.text();
-      const $$ = cheerio.load(htm);
-      const yuan = $$('script#__NEXT_DATA__').html();
-      const jsonData = JSON.parse(yuan);
-      const jcid = jsonData.props.pageProps.dehydratedState.queries[0].state.data.result.play_view_business_info.episode_info.cid;
-      const cid = JSON.stringify(jcid);
+      const jsondata = await yuanshi.json();
+      const jsoncid = jsondata.result.episodes.find(ep => ep.ep_id === epidnum).cid;
+      const cid = JSON.stringify(jsoncid);
       return cid;
     }
 //回调获取的cid再次请求获取原屎xml，这个地方用fetch-API和https模块都解不开，替代方案就是curl了，curl YYDS
-    cidd()
+    huoqucid()
       .then((cid) => {
-        const urla = `https://api.bilibili.com/x/v1/dm/list.so?oid=${cid}`;
-        exec(`curl "${urla}" --compressed`, (error, stdout, stderr) => {
+        const danmuurl = `https://api.bilibili.com/x/v1/dm/list.so?oid=${cid}`;
+        exec(`curl "${danmuurl}" --compressed`, (error, stdout, stderr) => {
           if (error) {
             return;
           }
